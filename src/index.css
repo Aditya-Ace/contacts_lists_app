@@ -62,9 +62,15 @@ input {
   margin: 8px 0;
   box-sizing: border-box;
   border: none;
-  background: #dae2f8;
   background: -webkit-linear-gradient(to right, #d6a4a4, #dae2f8);
   background: linear-gradient(to right, #d6a4a4, #dae2f8);
+  font-size: 1rem;
+}
+
+select {
+  background: -webkit-linear-gradient(to right, #d6a4a4, #dae2f8);
+  background: linear-gradient(to right, #d6a4a4, #dae2f8);
+  font-size: 1rem;
 }
 
 .modal {

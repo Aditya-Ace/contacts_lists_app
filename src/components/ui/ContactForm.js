@@ -9,7 +9,7 @@ const initialFormValues = {
   firstName: '',
   lastName: '',
   email: '',
-  tag: 'Family'
+  tag: ''
 }
 const ContactForm = ({ setOpenModal }) => {
   const { values, resetForm, handleInputChange } = useForm(initialFormValues)
