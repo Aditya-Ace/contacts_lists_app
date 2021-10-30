@@ -9,7 +9,7 @@ const initialFormValues = {
   firstName: '',
   lastName: '',
   email: '',
-  tag: ''
+  tag: 'Family'
 }
 const ContactForm = ({ setOpenModal }) => {
   const { values, resetForm, handleInputChange } = useForm(initialFormValues)
@@ -23,6 +23,7 @@ const ContactForm = ({ setOpenModal }) => {
       values.email !== ''
     ) {
       values['id'] = contactsData.length + 1
+      console.log(values)
       setContactsData((prev) => [...prev, values])
     }
     resetForm()
