@@ -1,3 +1,9 @@
+#Contacts Lists App ===>>> Not Amazing UI but completely works on modifications done on an Array
+
+# Used heavenly React Custom Hooks, Props, useContext, useState and useEffect
+
+# Checkout the code to understanding the logics
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
