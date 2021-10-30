@@ -76,11 +76,11 @@ const EditContactForm = ({ setOpenModal, editData, setEditData }) => {
         <p>
           <label>Tag</label>
           <br />
-          <select name="tag" values={values.tag} onChange={handleInputChange}>
-            <option>Family</option>
-            <option>Friend</option>
-            <option>School</option>
-            <option>Work</option>
+          <select name="tag" value={values.tag} onChange={handleInputChange}>
+            <option value="Family">Family</option>
+            <option value="Friend">Friend</option>
+            <option value="School">School</option>
+            <option value="Work">Work</option>
           </select>
         </p>
         <div className="form__btn__group">

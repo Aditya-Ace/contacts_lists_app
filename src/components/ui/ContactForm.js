@@ -23,7 +23,6 @@ const ContactForm = ({ setOpenModal }) => {
       values.email !== ''
     ) {
       values['id'] = contactsData.length + 1
-      console.log(values)
       setContactsData((prev) => [...prev, values])
     }
     resetForm()
@@ -70,10 +69,10 @@ const ContactForm = ({ setOpenModal }) => {
           <label>Tag</label>
           <br />
           <select name="tag" values={values.tag} onChange={handleInputChange}>
-            <option>Family</option>
-            <option>Friend</option>
-            <option>School</option>
-            <option>Work</option>
+            <option value="Family">Family</option>
+            <option value="Friend">Friend</option>
+            <option value="School">School</option>
+            <option value="Work">Work</option>
           </select>
         </p>
         <div className="form__btn__group">
