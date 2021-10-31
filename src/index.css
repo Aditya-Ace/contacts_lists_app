@@ -16,8 +16,6 @@ form {
   flex-direction: column;
   justify-content: center;
   align-content: center;
-  width: 100%;
-  margin-top: 1em;
 }
 
 article {
@@ -35,8 +33,8 @@ article {
 
 .add__btn {
   position: relative;
-  top: 81px;
-  left: 335px;
+  top: 50px;
+  left: 250px;
 }
 
 main {
@@ -76,26 +74,27 @@ button:active {
 .article__body {
   padding: 0.5rem;
   margin: 0.5rem;
+  overflow: hidden;
 }
 
 .form__input {
-  width: 80%;
-  margin: 1rem auto;
+  width: 100%;
+  margin: 1rem 0 0 0;
   box-shadow: 5px 2px 2px #4d4d4c;
-  font-size: 1rem;
+  font-size: 1.2rem;
   border: none;
   background-color: #eee;
   background-position: 10px 10px;
   background-repeat: no-repeat;
-  padding: 1rem;
+  padding: 0.8rem;
   border-radius: 0.7rem;
 }
 
 select {
-  width: 80%;
-  margin: 1rem auto;
+  width: 100%;
+  margin: 1rem 0 0 0;
   box-shadow: 5px 2px 2px #4d4d4c;
-  font-size: 1rem;
+  font-size: 1.1rem;
   border: none;
   background-color: #eee;
   background-position: 10px 10px;
@@ -127,6 +126,7 @@ select:focus {
   background-color: #fefefe;
   margin: 0 auto;
   padding: 0;
+  bottom: 5rem;
   border: 1px solid #888;
   width: 40%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -197,7 +197,6 @@ select:focus {
   align-items: center;
   align-content: center;
   gap: 10px;
-  margin: 5rem;
 }
 
 .card__body {
@@ -257,7 +256,7 @@ select:focus {
   width: 20rem;
   background: #eee;
   border-radius: 0.7rem;
-  margin-top: 2rem;
+  margin-top: 0.1rem;
 }
 
 .search__input,
