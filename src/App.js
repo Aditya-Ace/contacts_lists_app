@@ -5,6 +5,7 @@ import Modal from './components/ui/Modal'
 import Button from './components/controls/Button'
 import ContactCard from './components/ui/ContactsCard'
 import { ContactsDataProvider } from './ContactsDataContext'
+import SearchBar from './components/ui/SearchBar'
 
 function App() {
   const [openModal, setOpenModal] = useState(false)
@@ -18,6 +19,7 @@ function App() {
       <div className="App">
         <Header title="Contact List App" />
         <Button title="Add" onClick={handleClick} backgroundColor="#f5cba7" />
+        <SearchBar />
         <ContactCard />
         <Modal openModal={openModal} setOpenModal={setOpenModal}>
           <ContactForm setOpenModal={setOpenModal} />

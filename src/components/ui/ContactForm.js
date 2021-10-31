@@ -40,6 +40,7 @@ const ContactForm = ({ setOpenModal }) => {
             value={values.firstName}
             autoComplete="off"
             onChange={handleInputChange}
+            className="form__input"
           />
         </p>
         <p>
@@ -51,6 +52,7 @@ const ContactForm = ({ setOpenModal }) => {
             value={values.lastName}
             autoComplete="off"
             onChange={handleInputChange}
+            className="form__input"
           />
         </p>
         <p>
@@ -63,6 +65,7 @@ const ContactForm = ({ setOpenModal }) => {
             required
             autoComplete="off"
             onChange={handleInputChange}
+            className="form__input"
           />
         </p>
         <p>

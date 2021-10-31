@@ -48,6 +48,7 @@ const EditContactForm = ({ setOpenModal, editData, setEditData }) => {
             value={values.firstName}
             autoComplete="off"
             onChange={handleInputChange}
+            className="form__input"
           />
         </p>
         <p>
@@ -59,6 +60,7 @@ const EditContactForm = ({ setOpenModal, editData, setEditData }) => {
             value={values.lastName}
             autoComplete="off"
             onChange={handleInputChange}
+            className="form__input"
           />
         </p>
         <p>
@@ -71,6 +73,7 @@ const EditContactForm = ({ setOpenModal, editData, setEditData }) => {
             required
             autoComplete="off"
             onChange={handleInputChange}
+            className="form__input"
           />
         </p>
         <p>
