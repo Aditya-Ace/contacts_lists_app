@@ -1,36 +1,36 @@
-import { useContext } from 'react'
+import { useContext, memo, useCallback } from 'react'
 import { ContactsContext } from '../../ContactsDataContext'
 import Button from '../controls/Button'
 import Container from './Container'
 import { Form, useForm } from '../../hooks/useForm'
+import { initialFormValues } from '../../common/Constants'
+import { sortArray } from '../../common/utils'
 
-const initialFormValues = {
-  id: undefined,
-  firstName: '',
-  lastName: '',
-  email: '',
-  tag: 'Family'
-}
 const ContactForm = ({ setOpenModal }) => {
   const { values, resetForm, handleInputChange } = useForm(initialFormValues)
-  const [contactsData, setContactsData] = useContext(ContactsContext)
+  const [contactsData, saveContactsData] = useContext(ContactsContext)
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault()
-    if (
-      values.firstName !== '' &&
-      values.lastName !== '' &&
-      values.email !== ''
-    ) {
-      values['id'] = contactsData.length + 1
-      setContactsData((prev) => [...prev, values])
-    }
-    resetForm()
-    setOpenModal(false)
-  }
+  const handleFormSubmit = useCallback(
+    (e) => {
+      e.preventDefault()
+      if (
+        values.firstName !== '' &&
+        values.lastName !== '' &&
+        values.email !== ''
+      ) {
+        const tempData = [...contactsData]
+        values['id'] = tempData.length + 1
+        tempData.push(values)
+        saveContactsData(sortArray(tempData))
+      }
+      resetForm()
+      setOpenModal(false)
+    },
+    [contactsData, resetForm, saveContactsData, setOpenModal, values]
+  )
   return (
     <Container>
-      <Form onSubmit={handleFormSubmit}>
+      <Form onSubmit={(e) => handleFormSubmit(e)}>
         <p>
           <label>First name</label>
           <br />
@@ -72,6 +72,7 @@ const ContactForm = ({ setOpenModal }) => {
           <label>Tag</label>
           <br />
           <select name="tag" values={values.tag} onChange={handleInputChange}>
+            <option value="Select">Select</option>
             <option value="Family">Family</option>
             <option value="Friend">Friend</option>
             <option value="School">School</option>
@@ -79,12 +80,23 @@ const ContactForm = ({ setOpenModal }) => {
           </select>
         </p>
         <div className="form__btn__group">
-          <Button type="submit" title="Add" />
-          <Button type="reset" title="Reset From" onClick={resetForm} />
+          <Button
+            type="submit"
+            title="Add"
+            backgroundColor="#0575e6"
+            color="#eee"
+          />
+          <Button
+            type="reset"
+            title="Reset From"
+            onClick={resetForm}
+            backgroundColor="#E74C3C"
+            color="#eee"
+          />
         </div>
       </Form>
     </Container>
   )
 }
 
-export default ContactForm
+export default memo(ContactForm)

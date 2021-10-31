@@ -1,29 +1,38 @@
-import { useContext, useState } from 'react'
+import { useContext, useState, memo } from 'react'
 import { ContactsContext } from '../../ContactsDataContext'
+import { sortArray } from '../../common/utils'
 
 const SearchBar = () => {
   const [search, setSearch] = useState('')
-  const [contactsData, setContactsData] = useContext(ContactsContext)
-
+  const [contactsData, saveContactsData] = useContext(ContactsContext)
   const handleSearchChange = (e) => {
-    setSearch(e.target.value.toLowerCase())
+    setSearch(e.target.value.trim().toLowerCase())
   }
   const handleSearchSubmit = (e) => {
     e.preventDefault()
     const tempData = [...contactsData]
-    const sortedArray = tempData.sort((a, b) => {
-      if (a.firstName < b.firstName) return -1
-      return a.firstName > b.firstName ? 1 : 0
-    })
-    setContactsData(sortedArray)
-    if (search !== '') {
-      const data = tempData.filter(
-        (element) => element.firstName.toLowerCase().search(search) !== -1
+    sortArray(tempData)
+    const searchData =
+      search &&
+      tempData.filter(
+        (element) =>
+          element.firstName.toLowerCase().includes(search) ||
+          element.lastName.toLowerCase().includes(search) ||
+          element.email.toLowerCase().includes(search)
       )
-      const updatedData = tempData.filter((tdata) => tdata.id !== data[0].id)
-      setContactsData((prev) => [...data, ...updatedData])
+
+    if (searchData.length) {
+      const newData = tempData.filter(
+        (value, index) => value.id !== searchData[0].id
+      )
+      const updatedList = [...searchData, ...newData]
+      saveContactsData(updatedList)
+      setSearch('')
+    } else {
+      saveContactsData(tempData)
     }
   }
+
   return (
     <form className="search__form" role="search" onSubmit={handleSearchSubmit}>
       <label className="search__label" htmlFor="search">
@@ -45,4 +54,4 @@ const SearchBar = () => {
     </form>
   )
 }
-export default SearchBar
+export default memo(SearchBar)

@@ -17,11 +17,21 @@ function App() {
   return (
     <ContactsDataProvider>
       <div className="App">
-        <Header title="Contact List App" />
-        <Button title="Add" onClick={handleClick} backgroundColor="#f5cba7" />
+        <Header title="Contacts" />
+        <Button
+          title="Add"
+          onClick={handleClick}
+          backgroundColor="#0575e6"
+          color="#eee"
+          className="add__btn"
+        />
         <SearchBar />
         <ContactCard />
-        <Modal openModal={openModal} setOpenModal={setOpenModal}>
+        <Modal
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          title="Add a new contact"
+        >
           <ContactForm setOpenModal={setOpenModal} />
         </Modal>
       </div>

@@ -1,13 +1,6 @@
 import { useRef, useEffect } from 'react'
 
-const initialFormValues = {
-  id: undefined,
-  firstName: '',
-  lastName: '',
-  email: '',
-  tag: ''
-}
-const Modal = ({ children, openModal, setOpenModal, setEditData }) => {
+const Modal = ({ children, openModal, setOpenModal, title }) => {
   const modalRef = useRef()
   useEffect(() => {
     const element = modalRef.current
@@ -21,24 +14,25 @@ const Modal = ({ children, openModal, setOpenModal, setEditData }) => {
       if (event.target === element) {
         element.style.display = 'none'
         setOpenModal(false)
-        setEditData(initialFormValues)
       }
     }
-  }, [openModal, setOpenModal, setEditData])
+  }, [openModal, setOpenModal])
 
   const handleModalClose = () => {
     const element = modalRef.current
     element.style.display = 'none'
     setOpenModal(false)
-    setEditData(initialFormValues)
   }
 
   return (
     <div className="modal" ref={modalRef}>
       <div className="modal-content">
-        <span className="close" onClick={handleModalClose}>
-          &times;
-        </span>
+        <div className="modal-header">
+          <span className="close" onClick={handleModalClose}>
+            &times;
+          </span>
+          <h4>{title}</h4>
+        </div>
         {children}
       </div>
     </div>

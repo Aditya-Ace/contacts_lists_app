@@ -1,41 +1,50 @@
-import { useContext } from 'react'
+import { useContext, useCallback, memo } from 'react'
 import { ContactsContext } from '../../ContactsDataContext'
 import Button from '../controls/Button'
 import Container from './Container'
 import { Form, useForm } from '../../hooks/useForm'
+import { initialFormValues } from '../../common/Constants'
 
-const initialFormValues = {
-  id: undefined,
-  firstName: '',
-  lastName: '',
-  email: '',
-  tag: ''
-}
 const EditContactForm = ({ setOpenModal, editData, setEditData }) => {
-  const [contactsData, setContactsData] = useContext(ContactsContext)
+  const [contactsData, saveContactsData] = useContext(ContactsContext)
   const { values, resetForm, handleInputChange } = useForm(editData)
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault()
-    if (
-      values.firstName !== '' &&
-      values.lastName !== '' &&
-      values.email !== ''
-    ) {
-      const tempData = [...contactsData]
-      const index = tempData.findIndex((obj) => obj.id === editData.id)
-      const tempElement = { ...tempData[index] }
-      tempElement.firstName = values.firstName
-      tempElement.lastName = values.lastName
-      tempElement.email = values.email
-      tempElement.tag = values.tag
-      tempData[index] = tempElement
-      setContactsData((prev) => [...tempData])
-    }
-    resetForm()
-    setOpenModal(false)
-    setEditData(initialFormValues)
-  }
+  const handleFormSubmit = useCallback(
+    (e) => {
+      e.preventDefault()
+      if (
+        values.firstName !== '' &&
+        values.lastName !== '' &&
+        values.email !== ''
+      ) {
+        const tempData = [...contactsData]
+        const index = tempData.findIndex((obj) => obj.id === editData.id)
+        const tempElement = { ...tempData[index] }
+        tempElement.firstName = values.firstName
+        tempElement.lastName = values.lastName
+        tempElement.email = values.email
+        tempElement.tag = values.tag
+        tempData[index] = tempElement
+        saveContactsData(tempData)
+      }
+      resetForm()
+      setOpenModal(false)
+      setEditData(initialFormValues)
+    },
+    [
+      contactsData,
+      editData.id,
+      resetForm,
+      saveContactsData,
+      setEditData,
+      setOpenModal,
+      values.email,
+      values.firstName,
+      values.lastName,
+      values.tag
+    ]
+  )
+
   return (
     <Container>
       <Form onSubmit={handleFormSubmit}>
@@ -87,12 +96,23 @@ const EditContactForm = ({ setOpenModal, editData, setEditData }) => {
           </select>
         </p>
         <div className="form__btn__group">
-          <Button type="submit" title="Update" />
-          <Button type="reset" title="Reset From" onClick={resetForm} />
+          <Button
+            type="submit"
+            title="Update"
+            backgroundColor="#0575e6"
+            color="#eee"
+          />
+          <Button
+            type="reset"
+            title="Reset From"
+            onClick={resetForm}
+            backgroundColor="#E74C3C"
+            color="#eee"
+          />
         </div>
       </Form>
     </Container>
   )
 }
 
-export default EditContactForm
+export default memo(EditContactForm)
