@@ -1,4 +1,4 @@
-import { useContext, useState, memo } from 'react'
+import { useContext, useState, useCallback, memo } from 'react'
 import { ContactsContext } from '../../ContactsDataContext'
 import { sortArray } from '../../common/utils'
 
@@ -8,7 +8,7 @@ const SearchBar = () => {
   const handleSearchChange = (e) => {
     setSearch(e.target.value.trim().toLowerCase())
   }
-  const handleSearchSubmit = (e) => {
+  const handleSearchSubmit = useCallback((e) => {
     e.preventDefault()
     const tempData = [...contactsData]
     sortArray(tempData)
@@ -31,7 +31,7 @@ const SearchBar = () => {
     } else {
       saveContactsData(tempData)
     }
-  }
+  })
 
   return (
     <form className="search__form" role="search" onSubmit={handleSearchSubmit}>
