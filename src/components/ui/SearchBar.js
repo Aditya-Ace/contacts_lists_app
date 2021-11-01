@@ -23,8 +23,9 @@ const SearchBar = () => {
         )
 
       if (searchData.length) {
-        const newData = tempData.filter(
-          (value, index) => value.id !== searchData[0].id
+        let newData
+        searchData.forEach(
+          (data) => (newData = tempData.filter((value) => value.id !== data.id))
         )
         const updatedList = [...searchData, ...newData]
         saveContactsData(updatedList)
