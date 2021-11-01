@@ -8,30 +8,33 @@ const SearchBar = () => {
   const handleSearchChange = (e) => {
     setSearch(e.target.value.trim().toLowerCase())
   }
-  const handleSearchSubmit = useCallback((e) => {
-    e.preventDefault()
-    const tempData = [...contactsData]
-    sortArray(tempData)
-    const searchData =
-      search &&
-      tempData.filter(
-        (element) =>
-          element.firstName.toLowerCase().includes(search) ||
-          element.lastName.toLowerCase().includes(search) ||
-          element.email.toLowerCase().includes(search)
-      )
+  const handleSearchSubmit = useCallback(
+    (e) => {
+      e.preventDefault()
+      const tempData = [...contactsData]
+      sortArray(tempData)
+      const searchData =
+        search &&
+        tempData.filter(
+          (element) =>
+            element.firstName.toLowerCase().includes(search) ||
+            element.lastName.toLowerCase().includes(search) ||
+            element.email.toLowerCase().includes(search)
+        )
 
-    if (searchData.length) {
-      const newData = tempData.filter(
-        (value, index) => value.id !== searchData[0].id
-      )
-      const updatedList = [...searchData, ...newData]
-      saveContactsData(updatedList)
-      setSearch('')
-    } else {
-      saveContactsData(tempData)
-    }
-  })
+      if (searchData.length) {
+        const newData = tempData.filter(
+          (value, index) => value.id !== searchData[0].id
+        )
+        const updatedList = [...searchData, ...newData]
+        saveContactsData(updatedList)
+        setSearch('')
+      } else {
+        saveContactsData(tempData)
+      }
+    },
+    [contactsData, saveContactsData, search]
+  )
 
   return (
     <form className="search__form" role="search" onSubmit={handleSearchSubmit}>
