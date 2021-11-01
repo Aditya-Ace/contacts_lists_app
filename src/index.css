@@ -80,10 +80,9 @@ button:active {
 .form__input {
   width: 100%;
   margin: 1rem 0 0 0;
-  box-shadow: 5px 2px 2px #4d4d4c;
+  box-shadow: 5px 2px 2px #e2e2e2;
   font-size: 1.2rem;
   border: none;
-  background-color: #eee;
   background-position: 10px 10px;
   background-repeat: no-repeat;
   padding: 0.8rem;
@@ -93,13 +92,12 @@ button:active {
 select {
   width: 100%;
   margin: 1rem 0 0 0;
-  box-shadow: 5px 2px 2px #4d4d4c;
-  font-size: 1.1rem;
+  box-shadow: 5px 2px 2px #e2e2e2;
+  font-size: 1.2rem;
   border: none;
-  background-color: #eee;
   background-position: 10px 10px;
   background-repeat: no-repeat;
-  padding: 1rem;
+  padding: 0.8rem;
   border-radius: 0.7rem;
 }
 
@@ -123,11 +121,12 @@ select:focus {
 
 .modal-content {
   position: relative;
-  background-color: #fefefe;
+  background-color: #dddddd;
   margin: 0 auto;
   padding: 0;
   bottom: 5rem;
   border: 1px solid #888;
+  border-radius: 2rem 2rem 2rem 2rem;
   width: 40%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-animation-name: animatetop;
@@ -197,6 +196,7 @@ select:focus {
   align-items: center;
   align-content: center;
   gap: 10px;
+  margin-top: 1rem;
 }
 
 .card__body {
