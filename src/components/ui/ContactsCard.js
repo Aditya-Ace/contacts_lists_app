@@ -8,7 +8,8 @@ import { initialFormValues } from '../../common/Constants'
 const ContactCard = () => {
   const [openEdit, setOpenEdit] = useState(false)
   const [editData, setEditData] = useState(initialFormValues)
-  const [contactsData, saveContactsData] = useContext(ContactsContext)
+  const [contactsData, saveContactsData, searchData, setSearchData] =
+    useContext(ContactsContext)
 
   const handleContactEdit = useCallback(
     (id) => {
@@ -28,6 +29,7 @@ const ContactCard = () => {
     const tempData = [...contactsData]
     const newContacts = tempData.filter((contact) => contact.id !== id)
     saveContactsData(newContacts)
+    setSearchData(newContacts)
   }
   return (
     <main className="card__body">
@@ -39,43 +41,83 @@ const ContactCard = () => {
         )}
       </header>
       <div className="card__content">
-        {contactsData.map((contact, index) => {
-          return (
-            <main className="profile" key={index}>
-              <div className="article__body">
-                <article
-                  style={{
-                    fontWeight: 'bold',
-                    marginBottom: '1rem',
-                    fontSize: '2rem'
-                  }}
-                >
-                  {contact.firstName} {contact.lastName}
-                </article>
-                <article style={{ marginBottom: '0.5rem' }}>
-                  {contact.email}
-                </article>
-                <article style={{ marginBottom: '0.5rem' }}>
-                  <span style={{ fontWeight: 'bold' }}>TAG</span>: {contact.tag}
-                </article>
-              </div>
-              <div className="card__btn__group">
-                <Button
-                  onClick={() => handleContactEdit(contact.id)}
-                  title="Edit"
-                  backgroundColor="#0575e6"
-                  color="#eee"
-                />
-                <Button
-                  onClick={() => handleContactDelete(contact.id)}
-                  title="X"
-                  backgroundColor="#E74C3C"
-                  color="#eee"
-                />
-              </div>
-            </main>
-          )
-        })}
+        {searchData.length
+          ? searchData.map((contact, index) => {
+              return (
+                <main className="profile" key={index}>
+                  <div className="article__body">
+                    <article
+                      style={{
+                        fontWeight: 'bold',
+                        marginBottom: '1rem',
+                        fontSize: '2rem'
+                      }}
+                    >
+                      {contact.firstName} {contact.lastName}
+                    </article>
+                    <article style={{ marginBottom: '0.5rem' }}>
+                      {contact.email}
+                    </article>
+                    <article style={{ marginBottom: '0.5rem' }}>
+                      <span style={{ fontWeight: 'bold' }}>TAG</span>:{' '}
+                      {contact.tag}
+                    </article>
+                  </div>
+                  <div className="card__btn__group">
+                    <Button
+                      onClick={() => handleContactEdit(contact.id)}
+                      title="Edit"
+                      backgroundColor="#0575e6"
+                      color="#eee"
+                    />
+                    <Button
+                      onClick={() => handleContactDelete(contact.id)}
+                      title="X"
+                      backgroundColor="#E74C3C"
+                      color="#eee"
+                    />
+                  </div>
+                </main>
+              )
+            })
+          : contactsData.map((contact, index) => {
+              return (
+                <main className="profile" key={index}>
+                  <div className="article__body">
+                    <article
+                      style={{
+                        fontWeight: 'bold',
+                        marginBottom: '1rem',
+                        fontSize: '2rem'
+                      }}
+                    >
+                      {contact.firstName} {contact.lastName}
+                    </article>
+                    <article style={{ marginBottom: '0.5rem' }}>
+                      {contact.email}
+                    </article>
+                    <article style={{ marginBottom: '0.5rem' }}>
+                      <span style={{ fontWeight: 'bold' }}>TAG</span>:{' '}
+                      {contact.tag}
+                    </article>
+                  </div>
+                  <div className="card__btn__group">
+                    <Button
+                      onClick={() => handleContactEdit(contact.id)}
+                      title="Edit"
+                      backgroundColor="#0575e6"
+                      color="#eee"
+                    />
+                    <Button
+                      onClick={() => handleContactDelete(contact.id)}
+                      title="X"
+                      backgroundColor="#E74C3C"
+                      color="#eee"
+                    />
+                  </div>
+                </main>
+              )
+            })}
       </div>
       {editData.firstName !== '' && (
         <Modal

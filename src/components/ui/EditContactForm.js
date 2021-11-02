@@ -6,7 +6,8 @@ import { Form, useForm } from '../../hooks/useForm'
 import { initialFormValues } from '../../common/Constants'
 
 const EditContactForm = ({ setOpenModal, editData, setEditData }) => {
-  const [contactsData, saveContactsData] = useContext(ContactsContext)
+  const [contactsData, saveContactsData, searchData, setSearchData] =
+    useContext(ContactsContext)
   const { values, resetForm, handleInputChange } = useForm(editData)
 
   const handleFormSubmit = useCallback(
@@ -26,6 +27,7 @@ const EditContactForm = ({ setOpenModal, editData, setEditData }) => {
         tempElement.tag = values.tag
         tempData[index] = tempElement
         saveContactsData(tempData)
+        setSearchData(tempData)
       }
       resetForm()
       setOpenModal(false)

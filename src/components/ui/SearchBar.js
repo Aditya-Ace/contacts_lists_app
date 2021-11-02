@@ -4,41 +4,43 @@ import { sortArray } from '../../common/utils'
 
 const SearchBar = () => {
   const [search, setSearch] = useState('')
-  const [contactsData, saveContactsData] = useContext(ContactsContext)
+  const [contactsData, saveContactsData, searchData, setSearchData] =
+    useContext(ContactsContext)
+
   const handleSearchChange = (e) => {
     setSearch(e.target.value.trim().toLowerCase())
   }
-  const handleSearchSubmit = useCallback(
-    (e) => {
-      e.preventDefault()
-      const tempData = [...contactsData]
-      sortArray(tempData)
-      const searchData =
-        search &&
-        tempData.filter(
-          (element) =>
-            element.firstName.toLowerCase().includes(search) ||
-            element.lastName.toLowerCase().includes(search) ||
-            element.email.toLowerCase().includes(search)
-        )
 
-      if (searchData.length) {
-        let newData
-        searchData.forEach(
-          (data) => (newData = tempData.filter((value) => value.id !== data.id))
-        )
-        const updatedList = [...searchData, ...newData]
-        saveContactsData(updatedList)
-        setSearch('')
-      } else {
-        saveContactsData(tempData)
-      }
-    },
-    [contactsData, saveContactsData, search]
-  )
+  const handleSubmit = useCallback((e) => {
+    e.preventDefault()
+    const tempData = [...contactsData]
+    const searchResult =
+      search &&
+      tempData.filter(
+        (element) =>
+          element.firstName.toLowerCase().includes(search) ||
+          element.lastName.toLowerCase().includes(search) ||
+          element.email.toLowerCase().includes(search)
+      )
+
+    if (searchResult.length) {
+      // let newData
+      // searchData.forEach(
+      //   (data) => (newData = tempData.filter((value) => value.id !== data.id))
+      // )
+      // const updatedList = [...searchData, ...newData]
+      // saveContactsData(updatedList)
+      setSearchData(searchResult)
+    } else {
+      setSearchData([])
+      setSearch('')
+      // sortArray(tempData)
+      // saveContactsData(tempData)
+    }
+  })
 
   return (
-    <form className="search__form" role="search" onSubmit={handleSearchSubmit}>
+    <form className="search__form" role="search" onSubmit={handleSubmit}>
       <label className="search__label" htmlFor="search">
         Search contacts
       </label>
@@ -52,7 +54,7 @@ const SearchBar = () => {
         autoFocus
         onChange={handleSearchChange}
       />
-      <button className="search__button" type="submit">
+      <button className="search__button" type="button">
         Go
       </button>
     </form>

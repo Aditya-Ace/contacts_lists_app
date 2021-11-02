@@ -7,6 +7,7 @@ export const ContactsContext = createContext(
 
 export const ContactsDataProvider = ({ children }) => {
   const [contactsData, setContactsData] = useState([])
+  const [searchData, setSearchData] = useState([])
 
   const saveContactsData = useCallback((contacts) => {
     localStorage.setItem('contactData', JSON.stringify(contacts))
@@ -24,7 +25,9 @@ export const ContactsDataProvider = ({ children }) => {
   }, [saveContactsData])
 
   return (
-    <ContactsContext.Provider value={[contactsData, saveContactsData]}>
+    <ContactsContext.Provider
+      value={[contactsData, saveContactsData, searchData, setSearchData]}
+    >
       {children}
     </ContactsContext.Provider>
   )
