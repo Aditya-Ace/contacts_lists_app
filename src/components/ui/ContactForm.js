@@ -9,7 +9,6 @@ import { sortArray } from '../../common/utils'
 const ContactForm = ({ setOpenModal }) => {
   const { values, resetForm, handleInputChange } = useForm(initialFormValues)
   const [contactsData, saveContactsData] = useContext(ContactsContext)
-
   const handleFormSubmit = useCallback(
     (e) => {
       e.preventDefault()
@@ -22,9 +21,9 @@ const ContactForm = ({ setOpenModal }) => {
         values['id'] = tempData.length + 1
         tempData.push(values)
         saveContactsData(sortArray(tempData))
+        resetForm()
+        setOpenModal(false)
       }
-      resetForm()
-      setOpenModal(false)
     },
     [contactsData, resetForm, saveContactsData, setOpenModal, values]
   )
@@ -41,6 +40,7 @@ const ContactForm = ({ setOpenModal }) => {
             autoComplete="off"
             onChange={handleInputChange}
             className="form__input"
+            required
           />
         </p>
         <p>
@@ -53,6 +53,7 @@ const ContactForm = ({ setOpenModal }) => {
             autoComplete="off"
             onChange={handleInputChange}
             className="form__input"
+            required
           />
         </p>
         <p>
@@ -62,10 +63,10 @@ const ContactForm = ({ setOpenModal }) => {
             type="email"
             name="email"
             value={values.email}
-            required
             autoComplete="off"
             onChange={handleInputChange}
             className="form__input"
+            required
           />
         </p>
         <p>

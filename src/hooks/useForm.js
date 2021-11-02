@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 export function useForm(initialFormValues) {
   const [values, setValues] = useState(initialFormValues)
-  const [errors, setErrors] = useState({})
+
   const handleInputChange = (e) => {
     const { name, value } = e.target
     setValues({
@@ -17,8 +17,6 @@ export function useForm(initialFormValues) {
 
   return {
     values,
-    errors,
-    setErrors,
     setValues,
     resetForm,
     handleInputChange

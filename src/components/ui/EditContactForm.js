@@ -28,10 +28,10 @@ const EditContactForm = ({ setOpenModal, editData, setEditData }) => {
         tempData[index] = tempElement
         saveContactsData(tempData)
         setSearchData(tempData)
+        resetForm()
+        setOpenModal(false)
+        setEditData(initialFormValues)
       }
-      resetForm()
-      setOpenModal(false)
-      setEditData(initialFormValues)
     },
     [
       contactsData,
@@ -61,6 +61,7 @@ const EditContactForm = ({ setOpenModal, editData, setEditData }) => {
             autoComplete="off"
             onChange={handleInputChange}
             className="form__input"
+            required
           />
         </p>
         <p>
@@ -73,6 +74,7 @@ const EditContactForm = ({ setOpenModal, editData, setEditData }) => {
             autoComplete="off"
             onChange={handleInputChange}
             className="form__input"
+            required
           />
         </p>
         <p>
@@ -103,13 +105,6 @@ const EditContactForm = ({ setOpenModal, editData, setEditData }) => {
             type="submit"
             title="Update"
             backgroundColor="#0575e6"
-            color="#eee"
-          />
-          <Button
-            type="reset"
-            title="Reset From"
-            onClick={resetForm}
-            backgroundColor="#E74C3C"
             color="#eee"
           />
         </div>
