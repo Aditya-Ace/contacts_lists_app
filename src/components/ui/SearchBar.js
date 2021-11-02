@@ -1,4 +1,4 @@
-import { useContext, useState, useCallback, memo } from 'react'
+import { useContext, useState, useCallback, memo, useEffect } from 'react'
 import { ContactsContext } from '../../ContactsDataContext'
 import { sortArray } from '../../common/utils'
 
@@ -7,9 +7,18 @@ const SearchBar = () => {
   const [contactsData, saveContactsData, setSearchData] =
     useContext(ContactsContext)
 
-  const handleSearchChange = (e) => {
-    setSearch(e.target.value.trim().toLowerCase())
-  }
+  const handleSearchChange = useCallback(
+    (e) => {
+      setSearch(e.target.value.trim().toLowerCase())
+    },
+    [setSearch]
+  )
+
+  useEffect(() => {
+    if (search === '') {
+      setSearchData([])
+    }
+  }, [search, setSearchData])
 
   const handleSubmit = useCallback(
     (e) => {
@@ -55,7 +64,7 @@ const SearchBar = () => {
         type="search"
         placeholder="Search..."
         autoFocus
-        onChange={handleSearchChange}
+        onChange={(e) => handleSearchChange(e)}
       />
       <button className="search__button" type="button">
         Go
