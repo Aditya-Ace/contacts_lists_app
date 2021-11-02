@@ -8,7 +8,7 @@ import { initialFormValues } from '../../common/Constants'
 const ContactCard = () => {
   const [openEdit, setOpenEdit] = useState(false)
   const [editData, setEditData] = useState(initialFormValues)
-  const [contactsData, saveContactsData, searchData, setSearchData] =
+  const [contactsData, saveContactsData, setSearchData, searchData] =
     useContext(ContactsContext)
 
   const handleContactEdit = useCallback(

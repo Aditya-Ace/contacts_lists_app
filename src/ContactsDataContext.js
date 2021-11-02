@@ -26,7 +26,7 @@ export const ContactsDataProvider = ({ children }) => {
 
   return (
     <ContactsContext.Provider
-      value={[contactsData, saveContactsData, searchData, setSearchData]}
+      value={[contactsData, saveContactsData, setSearchData, searchData]}
     >
       {children}
     </ContactsContext.Provider>

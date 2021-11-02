@@ -6,7 +6,7 @@ import { Form, useForm } from '../../hooks/useForm'
 import { initialFormValues } from '../../common/Constants'
 
 const EditContactForm = ({ setOpenModal, editData, setEditData }) => {
-  const [contactsData, saveContactsData, searchData, setSearchData] =
+  const [contactsData, saveContactsData, setSearchData] =
     useContext(ContactsContext)
   const { values, resetForm, handleInputChange } = useForm(editData)
 
@@ -40,6 +40,7 @@ const EditContactForm = ({ setOpenModal, editData, setEditData }) => {
       saveContactsData,
       setEditData,
       setOpenModal,
+      setSearchData,
       values.email,
       values.firstName,
       values.lastName,

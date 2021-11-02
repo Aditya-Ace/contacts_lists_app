@@ -4,40 +4,43 @@ import { sortArray } from '../../common/utils'
 
 const SearchBar = () => {
   const [search, setSearch] = useState('')
-  const [contactsData, saveContactsData, searchData, setSearchData] =
+  const [contactsData, saveContactsData, setSearchData] =
     useContext(ContactsContext)
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value.trim().toLowerCase())
   }
 
-  const handleSubmit = useCallback((e) => {
-    e.preventDefault()
-    const tempData = [...contactsData]
-    const searchResult =
-      search &&
-      tempData.filter(
-        (element) =>
-          element.firstName.toLowerCase().includes(search) ||
-          element.lastName.toLowerCase().includes(search) ||
-          element.email.toLowerCase().includes(search)
-      )
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault()
+      const tempData = [...contactsData]
+      const searchResult =
+        search &&
+        tempData.filter(
+          (element) =>
+            element.firstName.toLowerCase().includes(search) ||
+            element.lastName.toLowerCase().includes(search) ||
+            element.email.toLowerCase().includes(search)
+        )
 
-    if (searchResult.length) {
-      // let newData
-      // searchData.forEach(
-      //   (data) => (newData = tempData.filter((value) => value.id !== data.id))
-      // )
-      // const updatedList = [...searchData, ...newData]
-      // saveContactsData(updatedList)
-      setSearchData(searchResult)
-    } else {
-      setSearchData([])
-      setSearch('')
-      // sortArray(tempData)
-      // saveContactsData(tempData)
-    }
-  })
+      if (searchResult.length) {
+        // let newData
+        // searchData.forEach(
+        //   (data) => (newData = tempData.filter((value) => value.id !== data.id))
+        // )
+        // const updatedList = [...searchData, ...newData]
+        // saveContactsData(updatedList)
+        setSearchData(searchResult)
+      } else {
+        setSearchData([])
+        setSearch('')
+        sortArray(tempData)
+        saveContactsData(tempData)
+      }
+    },
+    [contactsData, saveContactsData, search, setSearchData]
+  )
 
   return (
     <form className="search__form" role="search" onSubmit={handleSubmit}>
