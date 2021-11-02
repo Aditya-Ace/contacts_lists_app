@@ -33,7 +33,7 @@ const Modal = ({ children, openModal, setOpenModal, title }) => {
           </span>
           <h4>{title}</h4>
         </div>
-        {children}
+        <div className="modal-body">{children}</div>
       </div>
     </div>
   )

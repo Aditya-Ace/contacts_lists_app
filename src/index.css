@@ -38,18 +38,16 @@ article {
 }
 
 main {
-  width: 60%;
-  margin: 2rem auto;
+  width: 80%;
+  margin: 1rem auto;
 }
 
 h1 {
-  padding: 20px 0;
   font-size: 2.5em;
   text-align: center;
 }
 
 h4 {
-  padding: 15px 0;
   font-size: 2em;
   text-align: center;
 }
@@ -79,9 +77,9 @@ button:active {
 
 .form__input {
   width: 100%;
-  margin: 1rem 0 0 0;
+  margin-top: 0.2rem;
   box-shadow: 5px 2px 2px #e2e2e2;
-  font-size: 1.2rem;
+  font-size: 1rem;
   border: none;
   background-position: 10px 10px;
   background-repeat: no-repeat;
@@ -91,9 +89,9 @@ button:active {
 
 select {
   width: 100%;
-  margin: 1rem 0 0 0;
+  margin-top: 0.2rem;
   box-shadow: 5px 2px 2px #e2e2e2;
-  font-size: 1.2rem;
+  font-size: 1rem;
   border: none;
   background-position: 10px 10px;
   background-repeat: no-repeat;
@@ -123,11 +121,9 @@ select:focus {
   position: relative;
   background-color: #dddddd;
   margin: 0 auto;
-  padding: 0;
-  bottom: 5rem;
   border: 1px solid #888;
   border-radius: 2rem 2rem 2rem 2rem;
-  width: 40%;
+  width: 35%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
@@ -159,9 +155,9 @@ select:focus {
 }
 
 .close {
-  color: #aaa;
+  color: rgb(66, 65, 65);
   float: right;
-  font-size: 28px;
+  font-size: 2rem;
   font-weight: bold;
 }
 
@@ -173,21 +169,12 @@ select:focus {
 }
 
 .modal-header {
-  padding: 2px 16px;
+  padding: 0.3rem;
   background: #0575e6;
+  border-radius: 0.5rem;
   background: -webkit-linear-gradient(to right, #021b79, #0575e6);
   background: linear-gradient(to right, #021b79, #0575e6);
   color: #eee;
-}
-
-.modal-body {
-  padding: 2px 16px;
-}
-
-.modal-footer {
-  padding: 2px 16px;
-  background-color: #5cb85c;
-  color: white;
 }
 
 .form__btn__group {
